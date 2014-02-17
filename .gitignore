@@ -2,3 +2,7 @@
 /build/
 /FuXi.egg-info/
 FuXi.sublime-*
+*.pyc
+/bin/
+/lib/python2.7/
+
