@@ -3,7 +3,6 @@
 /FuXi.egg-info/
 FuXi.sublime-*
 *.pyc
-<<<<<<< HEAD
 *.egg
 .coverage
 *__pycache__
