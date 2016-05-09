@@ -35,7 +35,7 @@ def normalizeTerm(term):
     else:
         return term
 
-from pickle import dumps, PicklingError  # for memoize
+from cPickle import dumps, PicklingError  # for memoize
 
 
 class memoize(object):

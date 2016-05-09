@@ -3,7 +3,7 @@
 Utility functions for a Boost Graph Library (BGL) DiGraph via the BGL Python Bindings
 """
 import itertools
-import pickle
+import cPickle as pickle
 from rdflib import (
     BNode,
     Namespace,
