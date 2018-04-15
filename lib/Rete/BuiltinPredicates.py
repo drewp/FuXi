@@ -7,6 +7,7 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
+import decimal
 
 from rdflib.graph import Graph
 from rdflib.util import first
@@ -17,6 +18,8 @@ LOG_NS = Namespace("http://www.w3.org/2000/10/swap/log#")
 MATH_NS = Namespace("http://www.w3.org/2000/10/swap/math#")
 EULER_NS = Namespace(
     "http://eulersharp.sourceforge.net/2003/03swap/owl-rules#")
+
+NUMBER_TYPES = (int, long, float, decimal.Decimal)
 
 
 def LogNotEqualTo(subject, object_):
@@ -94,7 +97,7 @@ def MathEqualTo(subject, object_):
         if not isinstance(term, Variable):
             assert isinstance(term, Literal), \
                 "math:equalTo can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:equalTo can only be used " + \
                 "with Numeric Literals (%s)" % term
 
@@ -102,7 +105,7 @@ def MathEqualTo(subject, object_):
         for term in [s, o]:
             assert isinstance(term, Literal), \
                 "math:equalTo can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:equalTo can only be used with " + \
                 "Numeric Literals (%s)" % term
         return s.toPython() == o.toPython()
@@ -114,7 +117,7 @@ def MathGreaterThan(subject, object_):
         if not isinstance(term, Variable):
             assert isinstance(term, Literal), \
                 "math:lessThan can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:lessThan can only be used with " + \
                 "Numeric Literals (%s)" % term
 
@@ -122,7 +125,7 @@ def MathGreaterThan(subject, object_):
         for term in [s, o]:
             assert isinstance(term, Literal), \
                 "math:greaterThan can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:greaterThan can only be used " + \
                 "with Numeric Literals (%s)" % term
         return s.toPython() > o.toPython()
@@ -134,7 +137,7 @@ def MathLessThan(subject, object_):
         if not isinstance(term, Variable):
             assert isinstance(term, Literal), \
                 "math:lessThan can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:lessThan can only be used with " + \
                 "Numeric Literals. (%s)" % term
 
@@ -142,7 +145,7 @@ def MathLessThan(subject, object_):
         for term in [s, o]:
             assert isinstance(term, Literal), \
                 "math:lessThan can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:lessThan can only be used with " + \
                 "Numeric Literals (%s)" % term
         return s.toPython() < o.toPython()
@@ -154,7 +157,7 @@ def MathNotLessThan(subject, object_):
         if not isinstance(term, Variable):
             assert isinstance(term, Literal), \
                 "math:notLessThan can only be used with Literals (%s)" % term
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:lessThan can only be used with " + \
                 "Numeric Literals (%s)" % term
 
@@ -162,7 +165,7 @@ def MathNotLessThan(subject, object_):
         for term in [s, o]:
             assert isinstance(term, Literal), \
                 "math:notLessThan can only be used with Literals"
-            assert isinstance(term.toPython(), (int, long, float)), \
+            assert isinstance(term.toPython(), NUMBER_TYPES), \
                 "math:lessThan can only be used with " + \
                 "Numeric Literals (%s)" % term
         return not(s.toPython() < o.toPython())
