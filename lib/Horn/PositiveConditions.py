@@ -529,7 +529,7 @@ class Uniterm(QNameManager, Atomic):
     def normalizeTerm(self, term):
         if isinstance(term, Literal):
             if term.datatype == _XSD_NS.integer:
-                return str(term) if py3compat.PY3 else unicode(term)
+                return str(term)
             else:
                 return term.n3()
         else:

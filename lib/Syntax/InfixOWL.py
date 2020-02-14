@@ -1178,7 +1178,7 @@ class Class(AnnotatibleTerms):
                 exprs[-1] = "\n    " + exprs[-1]
         if ec:
             nec_SuffStatements = [
-                isinstance(s, str if py3compat.PY3 else basestring) and s or
+                isinstance(s, str) and s or
                 manchesterSyntax(classOrIdentifier(s), self.graph) for s in ec]
             if nec_SuffStatements:
                 klassKind = "A Defined Class %s" % label
@@ -1888,7 +1888,7 @@ class Property(AnnotatibleTerms):
                                                               [OWL_NS.FunctionalProperty,
                                                                OWL_NS.InverseFunctionalProperty,
                                                                OWL_NS.TransitiveProperty])):
-                rt.append(unicode(roleType.split(OWL_NS)[-1]))
+                rt.append(str(roleType.split(OWL_NS)[-1]))
         else:
             rt.append('DatatypeProperty( %s %s' % (
                 self.qname, first(self.comment)
@@ -1903,14 +1903,14 @@ class Property(AnnotatibleTerms):
             if isinstance(normalizedName, BNode):
                 return term
             elif normalizedName.startswith(_XSD_NS):
-                return unicode(term)
+                return str(term)
             elif first(g.triples_choices((
                 normalizedName,
                 [OWL_NS.unionOf,
                        OWL_NS.intersectionOf], None))):
                 return repr(term)
             else:
-                return unicode(term.qname)
+                return str(term.qname)
         rt.append(u' '.join([u"   super( %s )" % canonicalName(superP, self.graph)
                              for superP in self.subPropertyOf]))
         rt.append(u' '.join([u"   domain( %s )" % canonicalName(domain, self.graph)
@@ -1919,7 +1919,7 @@ class Property(AnnotatibleTerms):
                              for range in self.range]))
         rt = u'\n'.join([expr for expr in rt if expr])
         rt += u'\n)'
-        return unicode(rt).encode('utf-8')
+        return str(rt).encode('utf-8')
 
     def _get_subPropertyOf(self):
         for anc in self.graph.objects(subject=self.identifier, predicate=RDFS.subPropertyOf):

@@ -19,7 +19,7 @@ MATH_NS = Namespace("http://www.w3.org/2000/10/swap/math#")
 EULER_NS = Namespace(
     "http://eulersharp.sourceforge.net/2003/03swap/owl-rules#")
 
-NUMBER_TYPES = (int, long, float, decimal.Decimal)
+NUMBER_TYPES = (int, float, decimal.Decimal)
 
 
 def LogNotEqualTo(subject, object_):

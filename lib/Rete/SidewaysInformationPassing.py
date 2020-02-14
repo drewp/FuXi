@@ -37,7 +37,7 @@ MAGIC = Namespace('http://doi.acm.org/10.1145/28659.28689#')
 
 def makeMD5Digest(value):
     return md5(
-        isinstance(value, unicode) and value.encode('utf-8')
+        isinstance(value, str) and value.encode('utf-8')
         or value).hexdigest()
 
 

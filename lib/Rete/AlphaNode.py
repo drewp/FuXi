@@ -35,7 +35,7 @@ def normalizeTerm(term):
     else:
         return term
 
-from cPickle import dumps, PicklingError  # for memoize
+from pickle import dumps, PicklingError  # for memoize
 
 
 class memoize(object):
@@ -112,7 +112,7 @@ class ReteToken:
 
     @memoize
     def concatenateTerms(terms):
-        return ''.join(unicode(term[VALUE]) for term in terms)
+        return ''.join(str(term[VALUE]) for term in terms)
 
     def __eq__(self, other):
         return hash(self) == hash(other)
